@@ -21,19 +21,19 @@ request.onerror = function (event) {
 };
 
 // will execute if new transaction is made w/o internet
-function saveData(data) {
-  const indexedEntry = db.indexedEntry(["new_transact"], "readwrite");
+function saveRecord(record) {
+  const transaction = db.transaction(["new_transact"], "readwrite");
   // access the object store for a new transaction
-  const transactObjectStore = indexedEntry.objectStore("new_transact");
+  const transactObjectStore = transaction.objectStore("new_transact");
   // add an entry to the object store
-  transactObjectStore.add(data);
+  transactObjectStore.add(record);
 }
 
 function uploadTransact() {
   // open entry in db
-  const indexedEntry = db.indexedEntry(["new_transact"], "readwrite");
+  const transaction = db.transaction(["new_transact"], "readwrite");
   // access object store
-  const transactObjectStore = indexedEntry.objectStore("new_transact");
+  const transactObjectStore = transaction.objectStore("new_transact");
   //   get record from the store and set to a variable
   const getAll = transactObjectStore.getAll();
 
@@ -53,10 +53,9 @@ function uploadTransact() {
             throw new Error(serverResponse);
           }
           // open a new entry in the object store
-          const indexedEntry = db.indexedEntry(["new_transact"], "readwrite");
+          const transaction = db.transaction(["new_transact"], "readwrite");
           // access the new_transact object store
-          const transactObjectStore =
-            indexedEntry.transactObjectStore("new_transact");
+          const transactObjectStore = transaction.objectStore("new_transact");
           // clear all items in your store
           transactObjectStore.clear();
 
