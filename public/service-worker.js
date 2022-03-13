@@ -2,7 +2,18 @@ const APP_PREFIX = "FoodFest-";
 const VERSION = "version_01";
 const CACHE_NAME = APP_PREFIX + VERSION;
 
-const FILES_TO_CACHE = ["./js/index.js", "./css/styles.css"];
+const FILES_TO_CACHE = [
+  "./js/index.js",
+  "./css/styles.css",
+  "./icons/icon-72x72",
+  "./icons/icon-96x96",
+  "./icons/icon-128x128",
+  "./icons/icon-144x144",
+  "./icons/icon-152x152",
+  "./icons/icon-192x192",
+  "./icons/icon-384x384",
+  "./icons/icon-512x512",
+];
 
 self.addEventListener("install", function (e) {
   e.waitUntil(
